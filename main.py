@@ -55,12 +55,43 @@ df_pakistan['ActiveCases'] = df_pakistan['Cases'] - (df_pakistan['Deaths']+df_pa
 
 df_pakistan['Date'] = pd.to_datetime(df_pakistan["Date"], infer_datetime_format=True)
 
+# combining data for every other country except Pakistan
 df_world = df_confirmed[df_confirmed['Country/Region'] != "Pakistan"]
+df_world = df_world.drop(['Province/State', 'Lat', "Long"], axis=1)
+df_world = df_world.groupby(["Country/Region"]).sum()  # add cases for different states of same country to get a total
+
+# Transpose to get time series
+df_world = df_world.T.reset_index()
+
+df_world.rename(columns={"index": "Date"}, inplace=True)
+
+df_world['Date'] = pd.to_datetime(df_world["Date"], infer_datetime_format=True)
+
+top_countries = ["Date", "Iran", "France", "China", "US", "United Kingdom"]
 
 
+df_top = df_world[top_countries]  # selecting only countries with highest cases
 
+# initial visualization
 
+import seaborn as sns
+from matplotlib.dates import DateFormatter
+import matplotlib.ticker as ticker
+fig, ax = plt.subplots()
+ax.set_yscale('log')
+ax.plot(df_pakistan['Date'], df_pakistan['Cases'], label="Pakistan")
+ax.plot(df_top['Date'], df_top['China'], label="China")
+ax.plot(df_top['Date'], df_top['US'], label="US")
+ax.plot(df_top['Date'], df_top['Iran'], label="Iran")
+ax.plot(df_top['Date'], df_top['France'], label="France")
+ax.set(xlabel="Date",
+       ylabel="Confirmed Cases",
+       title="Covid-19 Cases")
+ax.legend()
+date_form = DateFormatter("%d-%m")
+ax.xaxis.set_major_formatter(date_form)
 
+plt.show()
 
 
 
