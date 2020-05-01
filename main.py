@@ -31,7 +31,92 @@ df_pak_recovered = df_pak_recovered.drop(['Country/Region', 'Province/State', 'L
 
 # Transpose for better visualization
 df_pak_confirmed = df_pak_confirmed.T.reset_index()
-df_pak_confirmed = df_pak_confirmed.rename(columns={"index": "Date", 177: "Cases"})
+col_confirmed = ["Date", "Cases"]
+df_pak_confirmed.columns = col_confirmed
+
+df_pak_deaths = df_pak_deaths.T.reset_index()
+col_deaths = ["Date", "Deaths"]
+df_pak_deaths.columns = col_deaths
+
+df_pak_recovered = df_pak_recovered.T.reset_index()
+col_recovered = ["Date", "Recovered"]
+df_pak_recovered.columns = col_recovered
+
+
+print(df_pak_confirmed.shape)
+print(df_pak_deaths.shape)
+print(df_pak_recovered.shape)
+
+# merging into a single data frame
+df_pakistan = df_pak_confirmed
+df_pakistan["Deaths"] = df_pak_deaths['Deaths']
+df_pakistan["Recovered"] = df_pak_recovered['Recovered']
+df_pakistan['ActiveCases'] = df_pakistan['Cases'] - (df_pakistan['Deaths']+df_pakistan['Recovered'])
+
+df_pakistan['Date'] = pd.to_datetime(df_pakistan["Date"], infer_datetime_format=True)
+
+df_world = df_confirmed[df_confirmed['Country/Region'] != "Pakistan"]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
