@@ -1,11 +1,14 @@
 import pandas as pd
 import matplotlib.pyplot as plt
+from matplotlib.dates import DateFormatter
+
 
 # loading data-sets
 df_confirmed = pd.read_csv("dataset/time_series_covid19_confirmed_global.csv")
 df_deaths = pd.read_csv("dataset/time_series_covid19_deaths_global.csv")
 df_recovered = pd.read_csv("dataset/time_series_covid19_recovered_global.csv")
 
+do_plot = False
 
 # Data exploration
 df_confirmed.head()
@@ -72,32 +75,91 @@ top_countries = ["Date", "Iran", "France", "China", "US", "United Kingdom"]
 
 df_top = df_world[top_countries]  # selecting only countries with highest cases
 
-# initial visualization
 
-import seaborn as sns
-from matplotlib.dates import DateFormatter
-import matplotlib.ticker as ticker
-fig, ax = plt.subplots()
-ax.set_yscale('log')
-ax.plot(df_pakistan['Date'], df_pakistan['Cases'], label="Pakistan")
-ax.plot(df_top['Date'], df_top['China'], label="China")
-ax.plot(df_top['Date'], df_top['US'], label="US")
-ax.plot(df_top['Date'], df_top['Iran'], label="Iran")
-ax.plot(df_top['Date'], df_top['France'], label="France")
-ax.set(xlabel="Date",
+# initial visualization
+def plot_comparison():
+       fig, ax = plt.subplots()
+       ax.set_yscale('log')
+       ax.plot(df_pakistan['Date'], df_pakistan['Cases'], label="Pakistan")
+       ax.plot(df_top['Date'], df_top['China'], label="China")
+       ax.plot(df_top['Date'], df_top['US'], label="US")
+       ax.plot(df_top['Date'], df_top['Iran'], label="Iran")
+       ax.plot(df_top['Date'], df_top['France'], label="France")
+       ax.set(xlabel="Date",
        ylabel="Confirmed Cases",
        title="Covid-19 Cases")
-ax.legend()
-date_form = DateFormatter("%d-%m")
-ax.xaxis.set_major_formatter(date_form)
+       ax.legend()
+       date_form = DateFormatter("%d-%m")
+       ax.xaxis.set_major_formatter(date_form)
 
-plt.show()
-
-
+       plt.show()
 
 
+if do_plot:
+       plot_comparison()
 
 
+def plot_zero_day_progression(scale="linear"):
+       df_zero_day_iran = df_top["Iran"]
+       df_zero_day_iran = df_zero_day_iran[df_zero_day_iran > 0].values
+
+       df_zero_day_pakistan = df_pakistan['Cases']
+       df_zero_day_pakistan = df_zero_day_pakistan[df_zero_day_pakistan > 0].values
+
+       df_zero_day_US = df_top["US"]
+       df_zero_day_US = df_zero_day_US[df_zero_day_US > 0].values
+
+       df_zero_day_UK = df_top["United Kingdom"]
+       df_zero_day_UK = df_zero_day_UK[df_zero_day_UK > 0].values
+
+       fig, ax = plt.subplots()
+       ax.plot(df_zero_day_pakistan, label="Pakistan")
+       ax.plot(df_zero_day_iran, label="Iran")
+       ax.plot(df_zero_day_UK, label="UK")
+       ax.plot(df_zero_day_US, label="US")
+       ax.set(xlabel="No of days since the first case",
+              ylabel="Confirmed Cases",
+              title="Covid-19 Cases " + scale+" scale")
+       ax.set_yscale(scale)
+       ax.legend()
+       plt.show()
+
+
+if do_plot:
+       plot_zero_day_progression()
+       plot_zero_day_progression(scale="log")
+
+
+diff_pk = df_pakistan['Cases'].diff().fillna(0)
+
+
+df_pakistan['DailyChange'] = diff_pk
+# fig, ax = plt.subplots()
+# ax.bar(df_pakistan["Date"], df_pakistan['DailyChange'], label="Pakistan")
+# ax.set(xlabel="Date",
+# ylabel="number of daily cases",
+# title="Daily increase")
+# ax.legend()
+# date_form = DateFormatter("%d-%m")
+# ax.xaxis.set_major_formatter(date_form)
+#
+# plt.show()
+
+import plotly.graph_objects as go
+
+data = go.Bar(
+       x=df_pakistan['Date'],
+       y=df_pakistan['DailyChange'],
+       name="Daily Change",
+
+)
+
+fig = go.Figure(data=data)
+fig.show()
+import os
+if not os.path.exists("images"):
+       os.mkdir("images")
+fig.write_image("images/dailyChangePakistan.jpeg")
 
 
 
