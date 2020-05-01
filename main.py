@@ -155,11 +155,12 @@ data = go.Bar(
 )
 
 fig = go.Figure(data=data)
-fig.show()
-import os
-if not os.path.exists("images"):
-       os.mkdir("images")
-fig.write_image("images/dailyChangePakistan.jpeg")
+# fig.show()
+import plotly.io as pio
+import plotly
+plotly.io.orca.config.executable = "/usr/local/bin/orca"
+pio.write_image(fig, "images/s.jpg")
+
 
 
 
