@@ -31,12 +31,18 @@ We will compare cases with US, France and Italy
   <img width="700" height="500" src="https://github.com/fahadalisarwar1/Covid19-Pakistan/blob/master/images/comparison_Pakistan_US_France_Italy_cases.png">
 </p>
 
+Comparison of deaths in Pakistan with US, France and Italy
+
+
+
+<p align="center">
+  <img width="700" height="500" src="https://github.com/fahadalisarwar1/Covid19-Pakistan/blob/master/images/comparison_Pakistan_US_France_Italy_death.png">
+</p>
+
+
 
 Let's compare the daily increase in deaths for pakistan
 
 <p align="center">
   <img width="700" height="500" src="https://github.com/fahadalisarwar1/Covid19-Pakistan/blob/master/images/Daily_death_Pakistan.png">
 </p>
-
-
-
