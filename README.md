@@ -46,3 +46,13 @@ Let's compare the daily increase in deaths for pakistan
 <p align="center">
   <img width="700" height="500" src="https://github.com/fahadalisarwar1/Covid19-Pakistan/blob/master/images/Daily_death_Pakistan.png">
 </p>
+
+Number of Daily cases in Pakistan
+<p align="center">
+  <img width="700" height="500" src="https://github.com/fahadalisarwar1/Covid19-Pakistan/blob/master/images/Daily_cases_Pakistan.png">
+</p>
+
+Number of Daily Recoveries in Pakistan
+<p align="center">
+  <img width="700" height="500" src="https://github.com/fahadalisarwar1/Covid19-Pakistan/blob/master/images/Daily_recovered_Pakistan.png">
+</p>
