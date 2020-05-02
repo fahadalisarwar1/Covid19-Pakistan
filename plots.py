@@ -115,7 +115,7 @@ def daily_cases_country(country="Pakistan", dtype="cases"):
                  x="Date",
                  y=dtype,
                  labels={"Date": "Date",
-                         dtype: "No of daily cases"},
+                         dtype: "No of daily "+dtype},
                  title="Daily "+dtype+" in  "+country)
     fig.show()
     fig.write_image("images/Daily_" + dtype + "_" + country + ".png")
