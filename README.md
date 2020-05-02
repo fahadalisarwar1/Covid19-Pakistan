@@ -5,9 +5,10 @@ In this project, i will try to do preliminary data analysis about Pakistan's COV
 
 The image below shows top 10 countries with respect to most cases
 
-![Top 10 Countries](https://github.com/fahadalisarwar1/Covid19-Pakistan/blob/master/images/1_Covid-19_top_10_countries.png)
+![Top 10 Countries](https://github.com/fahadalisarwar1/Covid19-Pakistan/blob/master/images/Top_10_case.png)
 
 Lets compare Cases of Pakistan, US and China 
+
 
 ![Top 10 Countries](https://github.com/fahadalisarwar1/Covid19-Pakistan/blob/master/images/country_comparison_.png)
 
