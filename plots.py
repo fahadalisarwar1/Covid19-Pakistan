@@ -1,6 +1,7 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 from matplotlib.dates import DateFormatter
+import plotly.graph_objects as go
 import os
 import plotly.express as px
 if not os.path.exists("images"):
@@ -55,6 +56,7 @@ plot_top_10()
 plot_top_10("death")
 plot_top_10("recover")
 
+
 def plot_comparison(countries_to_plot=[], df_type="cases"):
     if df_type == "cases":
         df_t = df_confirmed.T
@@ -69,51 +71,23 @@ def plot_comparison(countries_to_plot=[], df_type="cases"):
     df_t = df_t.reset_index()
     df_t.rename(columns={"index": "Date"}, inplace=True)
     df_t['Date'] = pd.to_datetime(df_t["Date"], infer_datetime_format=True)
-    fig, ax = plt.subplots(figsize=(19.20, 10.80))
-    ax.set_yscale('log')
 
+    fig = go.Figure()
+    name = ""
     for country in countries_to_plot:
-        ax.plot(df_t['Date'], df_t[country], label=country)
-        ax.set(xlabel="Date",
-               ylabel=df_type,
-               title="Covid-19 data "+ df_type)
-        ax.legend()
-        date_form = DateFormatter("%d-%m")
-        ax.xaxis.set_major_formatter(date_form)
 
-        plt.show()
-        plt.savefig("images/country_comparison_"+df_type+".png")
-
-
-do_plot = False
-list_countries = ["Pakistan", "China", "US", "France", "United Kingdom"]
-if do_plot:
-    plot_comparison(list_countries, "death")
-
-
-def daily_cases_country(country="Pakistan", dtype="cases"):
-    if dtype == "cases":
-        df = df_confirmed[df_confirmed["Country/Region"] == country]
-    elif dtype == "death":
-        df = df_deaths[df_deaths["Country/Region"] == country]
-    else:
-        df = df_recovered[df_recovered["Country/Region"] == country]
-    df_selected = df.T.reset_index()
-    new_header = df.iloc[0]
-    df_selected = df_selected[1:]
-    df.columns = new_header
-    df_selected.columns = ["Date", dtype]
-    df_selected[dtype] = df_selected[dtype].diff().fillna(0)
-    df_selected["Date"] = pd.to_datetime(df_selected["Date"], infer_datetime_format=True)
-    fig = px.bar(data_frame=df_selected,
-                 x="Date",
-                 y=dtype,
-                 labels={"Date": "Date",
-                         dtype: "No of daily cases"},
-                 title="Daily "+dtype+" in  "+country)
+        fig.add_trace(go.Scatter(
+            x=df_t['Date'],
+            y=df_t[country],
+            name=country,
+            connectgaps=True
+        ))
+        name += country + "_"
+    fig.update_layout(yaxis_type="log")
     fig.show()
-    fig.write_image("images/Daily_" + dtype + "_" + country + ".png")
+
+    fig.write_image("images/comparison_"+name+df_type+".png")
 
 
-daily_cases_country("US", "death")
-daily_cases_country("Pakistan", "death")
+plot_comparison(["Pakistan", "US", "France", "Italy"])
+
