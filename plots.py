@@ -4,6 +4,8 @@ from matplotlib.dates import DateFormatter
 import plotly.graph_objects as go
 import os
 import plotly.express as px
+
+
 if not os.path.exists("images"):
     os.mkdir("images")
 
@@ -86,15 +88,19 @@ def plot_comparison(countries_to_plot=[], df_type="cases"):
     fig.update_layout(xaxis_title="Date",
                       yaxis_title=df_type,
                       yaxis_type="log")
-    fig.show()
+    # fig.show()
 
-    fig.write_image("images/comparison_"+name+df_type+".png")
+    # fig.write_image("images/comparison_"+name+df_type+".png")
+    return df_t
+    # df_t[df_t["Country/Region"] == "Pakistan"].to_csv("dataset/pakistan.csv")
 
 
 countries = ["Pakistan", "US", "France", "Italy"]
-# plot_comparison(countries)
+df_t = plot_comparison(countries)
 
 # plot_comparison(countries, "death")
+df_pak = df_t[["Date", "Pakistan"]]
+df_pak.to_csv("dataset/pakistan_ts.csv")
 
 
 def daily_cases_country(country="Pakistan", dtype="cases"):
@@ -120,7 +126,9 @@ def daily_cases_country(country="Pakistan", dtype="cases"):
     fig.show()
     fig.write_image("images/Daily_" + dtype + "_" + country + ".png")
 
+#
+# daily_cases_country("Pakistan", "cases")
+# daily_cases_country("Pakistan", "death")
+# daily_cases_country("Pakistan", "recovered")
 
-daily_cases_country("Pakistan", "cases")
-daily_cases_country("Pakistan", "death")
-daily_cases_country("Pakistan", "recovered")
+
