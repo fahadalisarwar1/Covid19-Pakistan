@@ -5,7 +5,7 @@ In this project, i will try to do preliminary data analysis about Pakistan's COV
 
 The image below shows top 10 countries with respect to most cases
 <p align="center">
-  <img width="460" height="300" src="https://github.com/fahadalisarwar1/Covid19-Pakistan/blob/master/images/Top_10_case.png">
+  <img width="800" height="500" src="https://github.com/fahadalisarwar1/Covid19-Pakistan/blob/master/images/Top_10_case.png">
 </p>
 
 ![Top 10 Cases]()
