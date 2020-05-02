@@ -83,11 +83,16 @@ def plot_comparison(countries_to_plot=[], df_type="cases"):
             connectgaps=True
         ))
         name += country + "_"
-    fig.update_layout(yaxis_type="log")
+    fig.update_layout(xaxis_title="Date",
+                      yaxis_title=df_type,
+                      yaxis_type="log")
     fig.show()
 
     fig.write_image("images/comparison_"+name+df_type+".png")
 
 
-plot_comparison(["Pakistan", "US", "France", "Italy"])
+countries = ["Pakistan", "US", "France", "Italy"]
+plot_comparison(countries)
+
+plot_comparison(countries, "death")
 
