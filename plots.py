@@ -52,9 +52,9 @@ def plot_top_10(df_type="case"):
     fig.write_image("images/Top_10_"+df_type+".png")
 
 
-plot_top_10()
-plot_top_10("death")
-plot_top_10("recover")
+# plot_top_10()
+# plot_top_10("death")
+# plot_top_10("recover")
 
 
 def plot_comparison(countries_to_plot=[], df_type="cases"):
@@ -92,7 +92,35 @@ def plot_comparison(countries_to_plot=[], df_type="cases"):
 
 
 countries = ["Pakistan", "US", "France", "Italy"]
-plot_comparison(countries)
+# plot_comparison(countries)
 
-plot_comparison(countries, "death")
+# plot_comparison(countries, "death")
 
+
+def daily_cases_country(country="Pakistan", dtype="cases"):
+    if dtype == "cases":
+        df = df_confirmed[df_confirmed["Country/Region"] == country]
+    elif dtype == "death":
+        df = df_deaths[df_deaths["Country/Region"] == country]
+    else:
+        df = df_recovered[df_recovered["Country/Region"] == country]
+    df_selected = df.T.reset_index()
+    new_header = df.iloc[0]
+    df_selected = df_selected[1:]
+    df.columns = new_header
+    df_selected.columns = ["Date", dtype]
+    df_selected[dtype] = df_selected[dtype].diff().fillna(0)
+    df_selected["Date"] = pd.to_datetime(df_selected["Date"], infer_datetime_format=True)
+    fig = px.bar(data_frame=df_selected,
+                 x="Date",
+                 y=dtype,
+                 labels={"Date": "Date",
+                         dtype: "No of daily cases"},
+                 title="Daily "+dtype+" in  "+country)
+    fig.show()
+    fig.write_image("images/Daily_" + dtype + "_" + country + ".png")
+
+
+daily_cases_country("Pakistan", "cases")
+daily_cases_country("Pakistan", "death")
+daily_cases_country("Pakistan", "recovered")
