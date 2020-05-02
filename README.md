@@ -25,3 +25,6 @@ Lets compare the death stats of Pakistan with other countries
 
 Let's compare the daily increase in deaths for pakistan
 ![Daily Deaths](https://github.com/fahadalisarwar1/Covid19-Pakistan/blob/master/images/Daily_death_Pakistan.png)
+
+
+![Comparison](https://github.com/fahadalisarwar1/Covid19-Pakistan/blob/master/images/comparison_Pakistan_US_France_Italy_cases.png)
