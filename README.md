@@ -10,3 +10,7 @@ The image below shows top 10 countries with respect to most cases
 Lets compare Cases of Pakistan, US and China 
 
 ![Top 10 Countries](https://github.com/fahadalisarwar1/Covid19-Pakistan/blob/master/images/country_comparison_.png)
+
+Lets compare the death stats of Pakistan with other countries
+
+![Deaths](https://github.com/fahadalisarwar1/Covid19-Pakistan/blob/master/images/country_comparison_death.png)
