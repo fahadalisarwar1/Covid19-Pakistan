@@ -94,6 +94,9 @@ def plot_comparison():
 if do_plot:
     plot_comparison()
 
+if not os.path.exists("images"):
+    os.mkdir("images")
+
 
 def plot_zero_day_progression(scale="linear"):
     df_zero_day_iran = df_top["Iran"]
@@ -119,11 +122,7 @@ def plot_zero_day_progression(scale="linear"):
     ax.set_yscale(scale)
     ax.legend()
     plt.show()
-
-
-if do_plot:
-    plot_zero_day_progression()
-    plot_zero_day_progression(scale="log")
+    plt.savefig("images/zeroday_prog_"+scale+".png")
 
 
 def plot_daily_change_pakistan():
@@ -141,7 +140,14 @@ def plot_daily_change_pakistan():
     fig = go.Figure(data=data)
     # fig.show()
 
-    if not os.path.exists("images"):
-        os.mkdir("images")
+    fig.write_image("images/DailyChangePakistan.png")
 
-    fig.write_image("images/fig1.png")
+
+if do_plot:
+    plot_daily_change_pakistan()
+    plot_zero_day_progression()
+    plot_zero_day_progression(scale="log")
+
+
+
+
