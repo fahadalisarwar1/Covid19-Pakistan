@@ -14,14 +14,7 @@ The image below shows top 10 countries with respect to most deaths
 
 The image below shows top 10 countries with most recoveries
 ![Top 10 Recoveries](https://github.com/fahadalisarwar1/Covid19-Pakistan/blob/master/images/Top_10_recover.png)
-Lets compare Cases of Pakistan, US and China 
 
-
-![Top 10 Countries](https://github.com/fahadalisarwar1/Covid19-Pakistan/blob/master/images/country_comparison_.png)
-
-Lets compare the death stats of Pakistan with other countries
-
-![Deaths](https://github.com/fahadalisarwar1/Covid19-Pakistan/blob/master/images/country_comparison_death.png)
 
 Let's compare the daily increase in deaths for pakistan
 ![Daily Deaths](https://github.com/fahadalisarwar1/Covid19-Pakistan/blob/master/images/Daily_death_Pakistan.png)
