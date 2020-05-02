@@ -14,3 +14,6 @@ Lets compare Cases of Pakistan, US and China
 Lets compare the death stats of Pakistan with other countries
 
 ![Deaths](https://github.com/fahadalisarwar1/Covid19-Pakistan/blob/master/images/country_comparison_death.png)
+
+Let's compare the daily increase in deaths for pakistan
+![Daily Deaths]()

@@ -114,4 +114,4 @@ def daily_cases_country(country="Pakistan", dtype="cases"):
 
 
 daily_cases_country("US", "death")
-daily_cases_country("Pakistan", "cases")
+daily_cases_country("Pakistan", "death")
