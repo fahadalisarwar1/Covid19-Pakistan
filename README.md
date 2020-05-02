@@ -27,8 +27,16 @@ The image below shows top 10 countries with most recoveries
 Let's start exploring data about Pakistan, First we will compare the total number of cases of Pakistan with other countries.
 We will compare cases with US, France and Italy
 
-![Comparison](https://github.com/fahadalisarwar1/Covid19-Pakistan/blob/master/images/comparison_Pakistan_US_France_Italy_cases.png)
+<p align="center">
+  <img width="700" height="500" src="https://github.com/fahadalisarwar1/Covid19-Pakistan/blob/master/images/comparison_Pakistan_US_France_Italy_cases.png">
+</p>
+
 
 Let's compare the daily increase in deaths for pakistan
-![Daily Deaths](https://github.com/fahadalisarwar1/Covid19-Pakistan/blob/master/images/Daily_death_Pakistan.png)
+
+<p align="center">
+  <img width="700" height="500" src="https://github.com/fahadalisarwar1/Covid19-Pakistan/blob/master/images/Daily_death_Pakistan.png">
+</p>
+
+
 
